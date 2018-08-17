@@ -16,7 +16,7 @@ class ResPartner(models.Model):
         if patient_partner.type_partner.id == self.env.ref('start.start_patient_partner').id:
             self.env[''].create({
                 'name':patient_partner.name,
-                'code':patient_partner,
+                'code':patient_partner.id + '' +patient_partner.name,
                 'partner_id':self.env.uid
             })
         return patient_partner
