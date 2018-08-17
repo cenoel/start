@@ -9,3 +9,14 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     type_partner = fields.Many2one('start.type.partner',string='Type of partner')
+
+    @api.model
+    def create(self, values):
+        patient_partner = super(ResPartner, self).create(values)(self)
+        if patient_partner.type_partner.id == self.env.ref('start.start_patient_partner').id:
+            self.env[''].create({
+                'name':patient_partner.name,
+                'code':patient_partner,
+                'partner_id':self.env.uid
+            })
+        return patient_partner
