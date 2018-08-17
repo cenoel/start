@@ -1,0 +1,75 @@
+<odoo>
+  <data>
+    <!--Main menu start-->
+    <menuitem
+            name="START"
+            id="start_main_menu"
+            web_icon="start,static/src/img/start.png"/>
+
+    <!--Menu Operation-->
+    <menuitem
+            name="Operations"
+            id="start_main_operations"
+            parent="start_main_menu"
+            sequence="10"/>
+
+    <menuitem
+            id="start_sub_menu_tranfert"
+            name="Transfers"
+            parent="start_main_operations"
+            sequence="11"
+            action="stock.action_picking_tree_all"
+            groups="stock.group_stock_manager,stock.group_stock_user"
+    />
+
+    <menuitem
+            name="Purchase Orders"
+            id="start_sub_menu_purchase_order"
+            action="purchase.purchase_form_action"
+            parent="start_main_operations"
+            sequence="12"
+    />
+
+    <menuitem
+            action="stock.action_warehouse_form"
+            id="start_sub_menu_warehouse"
+            parent="start_main_operations"
+            sequence="13"/>
+
+    <!--Menu Fiche-->
+    <menuitem
+            name="Fiche"
+            id="start_main_fiche"
+            parent="start_main_menu"
+            sequence="20"/>
+
+    <menuitem
+            name="Products"
+            id="start_sub_menu_products"
+            action="stock.product_template_action_product"
+            parent="start_main_fiche"
+            sequence="21"/>
+
+    <menuitem
+            id="start_sub_menu_equipment"
+            name="Equipments"
+            parent="start_main_fiche"
+            action="maintenance.hr_equipment_action"
+            groups="maintenance.group_equipment_manager,base.group_user"
+            sequence="22"/>
+
+    <menuitem
+            id="start_sub_menu_patient"
+            name="Patient"
+            action="start.start_patient_action"
+            parent="start_main_fiche"
+            sequence="23"/>
+
+    <menuitem
+            id="start_sub_menu_doctor"
+            name="Doctor"
+            action="start.action_doctor_window"
+            parent="start_main_fiche"
+            sequence="24"/>
+  </data>
+</odoo>

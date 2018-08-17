@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+    <record id="start_patient_partner" model="start.type.partner">
+      <field name="name">Patient</field>
+    </record>
+    <record id="start_doctor_partner" model="start.type.partner">
+      <field name="name">Doctor</field>
+    </record>
+  </data>
+</odoo>

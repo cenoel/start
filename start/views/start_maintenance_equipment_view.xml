@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="inherit_hr_equipment_view_form" model="ir.ui.view">
+      <field name="name">Sompni.product.equipment.form</field>
+      <field name="model">maintenance.equipment</field>
+      <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//form" position="attributes">
+          <attribute name="create">0</attribute>
+          <attribute name="edit">0</attribute>
+        </xpath>
+        <xpath expr="//form/sheet" position="before">
+          <header>
+            <field name="state" widget="statusbar" statusbar_visible="unavailable,available,patient"
+                   readonly="1"/>
+          </header>
+        </xpath>
+        <xpath expr="//form/sheet/group/group/field[@name='owner_user_id']" position="after">
+          <field name="product_id"/>
+          <field name="location_id"/>
+          <field name="lot_id"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="inherit_hr_equipment_view_tree" model="ir.ui.view">
+      <field name="name">equipment tree</field>
+      <field name="model">maintenance.equipment</field>
+      <field name="inherit_id" ref="maintenance.hr_equipment_view_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree" position="attributes">
+          <attribute name="create">0</attribute>
+          <attribute name="edit">0</attribute>
+        </xpath>
+        <xpath expr="//tree/field[@name='category_id']" position="after">
+          <field name="product_id"/>
+          <field name="location_id"/>
+          <field name="lot_id"/>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

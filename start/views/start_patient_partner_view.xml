@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="start_patient_view_form" model="ir.ui.view">
+    <field name="name">Patient form</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_short_form"/>
+    <field name="arch" type="xml">
+       <xpath expr="//field[@name='name']" position="after">
+         <field name="type_partner" invisible="1"/>
+       </xpath>
+    </field>
+  </record>
+
+  <record id="start_patient_action" model="ir.actions.act_window">
+    <field name="name">Patient</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_id" ref="base.view_partner_tree"/>
+    <field name="context" eval="{'default_type_partner': ref('start.start_patient_partner')}"/>
+    <field name="domain" eval="[('type_partner','=', ref('start.start_patient_partner'))]"/>
+  </record>
+
+  <record id="start_action_patient_tree" model="ir.actions.act_window.view">
+    <field name="sequence" eval="1"/>
+    <field name="act_window_id" ref="start_patient_action"/>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="base.view_partner_tree"/>
+  </record>
+
+  <record id="start_action_patient_form" model="ir.actions.act_window.view">
+    <field name="sequence" eval="2"/>
+    <field name="act_window_id" ref="start_patient_action"/>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="start_patient_view_form"/>
+  </record>
+</odoo>
