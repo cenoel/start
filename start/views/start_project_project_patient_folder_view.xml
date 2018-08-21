@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="start_linked_patient_folder_action" model="ir.actions.act_window">
+    <field name="name">Projects</field>
+    <field name="res_model">project.project</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">form</field>
+    <field name="context">{'default_patient_id': default_patient_id_value}</field>
+  </record>
+
+  <record id="inherit_edit_project" model="ir.ui.view">
+    <field name="name">Patient folder form</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="arch" type="xml">
+      <xpath expr="//div[@name='options_active']" position="replace">
+          <field name="patient_id" domain="[('type_partner','=',%(start.start_patient_partner)d)]"/>
+      </xpath>
+      <xpath expr="//page[@name='emails']" position="after">
+        <page string="MACHINE PARAMETER">
+          <field name="maintenance_equipment_ids" domain="[('state','=','available')]">
+            <tree string="">
+              <field name="equipment_image_medium" widget="image"/>
+              <field name="name"/>
+              <field name="serial_no"/>
+              <field name="product_id"/>
+              <field name="location_id"/>
+              <field name="state"/>
+              <button
+                      name="attach_machine"
+                      string="Attache"
+                      type="object"
+                      class="oe_highlight"
+                      context="{'project_id': parent.id}"
+                      attrs="{'invisible':[('state', '=', 'patient')]}"
+              />
+              <button
+                      name="detach_machine"
+                      string="Detach"
+                      type="object"
+                      class="oe_highlight"
+                      context="{'project_id': parent.id}"
+                      attrs="{'invisible':[('state', '=', 'available')]}"
+              />
+            </tree>
+          </field>
+        </page>
+      </xpath>
+    </field>
+  </record>
+</odoo>

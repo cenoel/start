@@ -14,15 +14,17 @@
         'contacts',
         'maintenance',
         'product',
-        'stock'
+        'stock',
+        'project'
     ],
     'data': [
         # 'security/ir.model.access.csv',
         'data/start_res_config_settings_data.xml',
         'data/start_type_partner_data.xml',
+        'views/start_project_project_patient_folder_view.xml',
         'views/start_res_partner_view.xml',
-        'views/start_doctor_partner_view.xml',
-        'views/start_patient_partner_view.xml',
+        'views/start_res_partner_doctor_view.xml',
+        'views/start_res_partner_patient_view.xml',
         'views/start_maintenance_equipment_view.xml',
         'views/start_menu_view.xml',
     ],

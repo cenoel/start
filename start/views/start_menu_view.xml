@@ -59,17 +59,38 @@
             sequence="22"/>
 
     <menuitem
+            action="project.open_view_project_all_config"
+            id="start_sub_menu_dossier_patient"
+            name="Patient folder"
+            parent="start_main_fiche"
+            sequence="24"/>
+
+    <menuitem
+            name="Stock move"
+            action="stock.stock_move_line_action"
+            id="start_sub_menu_stock_move_line"
+            parent="start_main_fiche" sequence="25"/>
+
+    <!--Sub menu Human resource-->
+    <menuitem
+            name="Human resource"
+            id="start_main_human_resource"
+            parent="start_main_menu"
+            sequence="30"/>
+
+    <menuitem
             id="start_sub_menu_patient"
             name="Patient"
             action="start.start_patient_action"
-            parent="start_main_fiche"
-            sequence="23"/>
+            parent="start_main_human_resource"
+            sequence="31"/>
 
     <menuitem
             id="start_sub_menu_doctor"
             name="Doctor"
             action="start.action_doctor_window"
-            parent="start_main_fiche"
-            sequence="24"/>
+            parent="start_main_human_resource"
+            sequence="32"/>
+
   </data>
 </odoo>
