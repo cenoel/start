@@ -53,18 +53,23 @@ class ProjectProject(models.Model):
                 else:
                     line.state_attachment = 'paired_not_transferred'
 
-    # @api.multi
-    # def write(self, values):
-    #     print(self.patient_id.id)
-    #     for line in self:
-    #         if 'maintenance_equipment_ids' in values:
-    #             for edit in values['maintenance_equipment_ids']:
-    #                 print(edit.id)
-    #                 print('***********')
-    #                 print(line.patient_id.location_id.id)
-    #                 if edit.location_id.id == line.patient_id.location_id.id:
-    #                     raise UserError(_("""You can not delete this machine named {0} serial number {1} from your file because it is still in your warehouse""".format(edit.name,edit.serial_no)))
-    #     return super(ProjectProject, self).write(values)
+    @api.onchange('maintenance_equipment_ids')
+    def check_update(self):
+        origin_id = self._origin
+        if origin_id:
+            old_maintenance = origin_id.maintenance_equipment_ids
+            new_maintenance = self.maintenance_equipment_ids
+            deleted_maintenance = old_maintenance - new_maintenance
+            if deleted_maintenance:
+                for line in deleted_maintenance:
+                    if line.location_id.id == self.patient_id.location_id.id:
+                        raise UserError(_(
+                            """You can not delete this machine named {0} serial number {1} from your file because it is still in your warehouse""".format(
+                                line.name, line.serial_no)))
+
+
+
+
 
 
 
