@@ -3,19 +3,17 @@
   <record id="start_doctor_view_form" model="ir.ui.view">
     <field name="name">Doctor form</field>
     <field name="model">res.partner</field>
-    <field name="inherit_id" ref="base.view_partner_short_form"/>
+    <field name="inherit_id" ref="base.view_partner_form"/>
     <field name="arch" type="xml">
-      <xpath expr="//form/sheet/field[@name='image']" position="before">
-        <div class="oe_button_box" name="button_box">
-          <button class="oe_stat_button"
-                  name="%(start.start_linked_patient_folder_action)d"
-                  icon="fa-building-o"
-                  type="action"
-                  context="{'default_patient_id_value': active_id}"
-                  attrs="{'invisible':[('type_partner','=',%(start.start_doctor_partner)d)]}">
-            <field name="qty_folder" widget="statinfo" string="Folders"/>
-          </button>
-        </div>
+      <xpath expr="//div[@name='button_box']/button[@name='toggle_active']" position="before">
+        <button class="oe_stat_button"
+                name="%(start.start_linked_patient_folder_action)d"
+                icon="fa-building-o"
+                type="action"
+                context="{'default_patient_id_value': active_id}"
+                attrs="{'invisible':[('type_partner','=',%(start.start_doctor_partner)d)]}">
+          <field name="qty_folder" widget="statinfo" string="Folders"/>
+        </button>
       </xpath>
       <xpath expr="//field[@name='name']" position="after">
         <field name="type_partner" invisible="1"/>
@@ -28,4 +26,5 @@
       </xpath>
     </field>
   </record>
+
 </odoo>

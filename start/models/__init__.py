@@ -9,3 +9,4 @@ from . import start_stock_quant
 from . import start_type_partner
 from . import start_project_project_patient_folder
 from . import start_stock_picking
+from . import start_stock_warehouse

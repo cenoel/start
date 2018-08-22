@@ -26,6 +26,7 @@
         'views/start_res_partner_doctor_view.xml',
         'views/start_res_partner_patient_view.xml',
         'views/start_maintenance_equipment_view.xml',
+        'views/start_equipment_detach_view.xml',
         'views/start_menu_view.xml',
     ],
 }

@@ -19,8 +19,9 @@ class ResPartner(models.Model):
     @api.multi
     @api.depends('project_ids')
     def _set_qty_folder(self):
-        result_count = self.env['project.project'].search([('patient_id','=',self.id)])
-        self.qty_folder = len(result_count)
+        for line in self:
+            result_count = self.env['project.project'].search([('patient_id','=',line.id)])
+            line.qty_folder = len(result_count)
 
 
     @api.model

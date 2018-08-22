@@ -14,7 +14,14 @@
     <field name="inherit_id" ref="project.edit_project"/>
     <field name="arch" type="xml">
       <xpath expr="//div[@name='options_active']" position="replace">
-          <field name="patient_id" domain="[('type_partner','=',%(start.start_patient_partner)d)]"/>
+        <group>
+          <field name="patient_id" domain="[('type_partner','=',%(start.start_patient_partner)d)]"
+                 view_id="base.view_partner_short_form"/>
+        </group>
+        <group>
+          <field name="state_attachment"/>
+        </group>
+        <field name="patient_location_ref" invisible="1"/>
       </xpath>
       <xpath expr="//page[@name='emails']" position="after">
         <page string="MACHINE PARAMETER">
@@ -35,7 +42,7 @@
                       attrs="{'invisible':[('state', '=', 'patient')]}"
               />
               <button
-                      name="detach_machine"
+                      name="select_destination_location"
                       string="Detach"
                       type="object"
                       class="oe_highlight"
